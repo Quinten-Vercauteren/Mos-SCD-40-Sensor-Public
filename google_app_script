@@ -1,0 +1,13 @@
+var sheet_id = "XXXXXXX";
+var sheet_name = "SCD-40_Sensor_G1";
+
+function doGet(e){
+  var ss = SpreadsheetApp.openById(sheet_id);
+  var sheet = ss.getSheetByName(sheet_name);
+  var co2 = String(e.parameter.co2);
+  var temperature = String(e.parameter.temperature);
+  var humidity = String(e.parameter.humidity);
+  var DatumTijd = new Date();
+  var timestamp = Utilities.formatDate(DatumTijd, "GMT+1", "yyyy-MM-dd HH:mm:ss");
+  sheet.appendRow([timestamp,co2,temperature,humidity]);
+}
